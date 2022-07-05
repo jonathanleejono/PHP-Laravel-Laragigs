@@ -27,8 +27,9 @@ Route::get('/', function () {
 
 
 // Single Listing1
-Route::get('/listings/{id}', function ($id) {
+Route::get('/listings/{listing}', function (Listing $listing) {
     return view('listing', [
-        'listings' => Listing::find($id)
+        // keep both of these as singular 'listing'
+        'listing' => $listing
     ]);
 });

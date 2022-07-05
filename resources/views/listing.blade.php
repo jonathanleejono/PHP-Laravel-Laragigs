@@ -1,4 +1,5 @@
 @extends('layout')
+
 @section('content')
 
 @include('partials._search')
@@ -10,7 +11,7 @@
         <div class="flex flex-col items-center justify-center text-center">
             <img class="w-48 mr-6 mb-6" src="{{asset('images/no-image.png')}}" alt="" />
 
-            <h3 class="text-2xl mb-2">{{$listing['title']}}</h3>
+            <h3 class="text-2xl mb-2">{{$listing->title}}</h3>
             <div class="text-xl font-bold mb-4">{{$listing->company}}</div>
             <ul class="flex">
                 <li class="bg-black text-white rounded-xl px-3 py-1 mr-2">
