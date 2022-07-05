@@ -26,7 +26,7 @@ Route::get('/', function () {
 });
 
 
-// Single Listing
+// Single Listing1
 Route::get('/listings/{id}', function ($id) {
     return view('listing', [
         'listings' => Listing::find($id)
