@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Listing;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// All Listings
 Route::get('/', function () {
-    return view('welcome');
+    // the view parameter is the name of the file
+    // inside of resources > views > listings.php
+    return view('listings', [
+        'heading' => 'Latest Listings',
+        'listings' => Listing::all()
+    ]);
 });
+
+
+// Single Listing
+// Route::get('/listings/{id}', function () {
+//     return view('listing', [
+//         'listings' => Listing::find($id)
+//     ]);
+// });
