@@ -13,7 +13,8 @@ class ListingController extends Controller
         // the view parameter is the name of the file
         // inside of resources > views > listings > index.blade.php
         return view('listings.index', [
-            'listings' => Listing::all()
+            // 'listings' => Listing::all()
+            'listings' => Listing::latest()->filter(request(['tag']))->get()
         ]);
     }
 
