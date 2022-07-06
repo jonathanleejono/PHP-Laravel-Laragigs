@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ListingController;
 use App\Models\Listing;
 use Illuminate\Support\Facades\Route;
 
@@ -16,20 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 
 // All Listings
-Route::get('/', function () {
-    // the view parameter is the name of the file
-    // inside of resources > views > listings.php
-    return view('listings', [
-        'heading' => 'Latest Listings',
-        'listings' => Listing::all()
-    ]);
-});
+// the 'index' is the name of the function in the ListingController file
+Route::get('/', [ListingController::class, 'index']);
 
 
-// Single Listing1
-Route::get('/listings/{listing}', function (Listing $listing) {
-    return view('listing', [
-        // keep both of these as singular 'listing'
-        'listing' => $listing
-    ]);
-});
+// Single Listing
+Route::get('/listings/{listing}', [ListingController::class, 'show']);
