@@ -11,11 +11,20 @@ class ListingController extends Controller
     // Show all listings
     public function index()
     {
+        // die dump, kind of like console.log (but in browser)
+        // dd(Listing::latest()->filter(request([
+        //     'tag',
+        //     'search'
+        // ]))->paginate(2));
+
         // the view parameter is the name of the file
         // inside of resources > views > listings > index.blade.php
         return view('listings.index', [
             // 'listings' => Listing::all()
-            'listings' => Listing::latest()->filter(request(['tag', 'search']))->get()
+            'listings' => Listing::latest()->filter(request([
+                'tag',
+                'search'
+            ]))->paginate(5)
         ]);
     }
 
@@ -52,6 +61,6 @@ class ListingController extends Controller
 
         Listing::create($formFields);
 
-        return redirect('/');
+        return redirect('/')->with('message', 'Listing created successfully!');
     }
 }
