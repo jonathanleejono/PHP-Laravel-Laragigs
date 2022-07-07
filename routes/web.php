@@ -20,6 +20,12 @@ use Illuminate\Support\Facades\Route;
 // the 'index' is the name of the function in the ListingController file
 Route::get('/', [ListingController::class, 'index']);
 
+// Show Create Form
+// this needs to be above '/listings/{listing}' to not mess up the routes
+Route::get('/listings/create', [ListingController::class, 'create']);
+
+// Store Listing Data - POST API link
+Route::post('/listings', [ListingController::class, 'store']);
 
 // Single Listing
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
