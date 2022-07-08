@@ -26,34 +26,38 @@ Route::get('/', [ListingController::class, 'index']);
 
 // Show Create Form
 // this needs to be above '/listings/{listing}' to not mess up the routes
-Route::get('/listings/create', [ListingController::class, 'create']);
+Route::get('/listings/create', [ListingController::class, 'create'])->middleware('auth');
 
 // Store Listing Data - POST API link
-Route::post('/listings', [ListingController::class, 'store']);
+Route::post('/listings', [ListingController::class, 'store'])->middleware('auth');
 
 // Show Edit Form
-Route::get('/listings/{listing}/edit', [ListingController::class, 'edit']);
+Route::get('/listings/{listing}/edit', [ListingController::class, 'edit'])->middleware('auth');
 
 // Update Listing
-Route::patch('/listings/{listing}', [ListingController::class, 'update']);
+Route::patch('/listings/{listing}', [ListingController::class, 'update'])->middleware('auth');
 
 // Delete Listing
-Route::delete('/listings/{listing}', [ListingController::class, 'delete']);
+Route::delete('/listings/{listing}', [ListingController::class, 'delete'])->middleware('auth');
 
 // Single Listing
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
 // Show Register Form
-Route::get('/register', [UserController::class, 'register']);
+// the middleware('guest') is to redirect an already logged in user back
+// to the home page, and to control the home page link go
+// to app > Providers > RouteServiceProvider.php and edit HOME link
+Route::get('/register', [UserController::class, 'register'])->middleware('guest');
 
 // Register User
 Route::post('/users', [UserController::class, 'store']);
 
 // Log User Out
-Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
 // Show Login Form
-Route::get('/login', [UserController::class, 'login']);
+// the name('login') is necessary for app > Http > Middleware > Authenticate.php
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
 
 // Login User
-Route::get('/users/login', [UserController::class, 'authenticate']);
+Route::post('/users/login', [UserController::class, 'authenticate']);

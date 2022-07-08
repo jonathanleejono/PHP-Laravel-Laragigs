@@ -30,7 +30,7 @@ class UserController extends Controller
         // Login
         auth()->login($user);
 
-        return redirect('/')->with('message', "Registered succesfully! Logging in...");
+        return redirect('/')->with('message', "Registered succesfully!");
     }
 
     // Logout User
