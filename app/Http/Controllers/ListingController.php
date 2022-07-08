@@ -24,7 +24,7 @@ class ListingController extends Controller
             'listings' => Listing::latest()->filter(request([
                 'tag',
                 'search'
-            ]))->paginate(5)
+            ]))->paginate(8)
         ]);
     }
 
@@ -58,6 +58,13 @@ class ListingController extends Controller
             'tags' => 'required',
             'description' => 'required'
         ]);
+
+        if ($request->hasFile('logo')) {
+            // inside config > filesystems.php
+            // 'default' => env('FILESYSTEM_DISK', 'public')
+            // set the second param of env() to be 'public' to upload files
+            $formFields['logo'] = $request->file('logo')->store("logos", 'public');
+        }
 
         Listing::create($formFields);
 
