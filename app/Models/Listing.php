@@ -9,10 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 class Listing extends Model
 {
     use HasFactory;
-
+    // have to include fillable fields here if 
+    // in Providers > AppServiceProvider, Model::unguard() is commented
     protected $fillable = [
         'title', 'company', 'location',
-        'website', 'email', 'description', 'tags', 'logo'
+        'website', 'email', 'description', 'tags', 'logo', 'user_id'
     ];
 
     public function scopeFilter($query, array $filters)
