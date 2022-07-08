@@ -1,8 +1,12 @@
 <?php
 
-use App\Http\Controllers\ListingController;
+
 use App\Models\Listing;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ListingController;
+
+// in terminal, use php artisan make:controller UserController
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +42,18 @@ Route::delete('/listings/{listing}', [ListingController::class, 'delete']);
 
 // Single Listing
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
+
+// Show Register Form
+Route::get('/register', [UserController::class, 'register']);
+
+// Register User
+Route::post('/users', [UserController::class, 'store']);
+
+// Log User Out
+Route::post('/logout', [UserController::class, 'logout']);
+
+// Show Login Form
+Route::get('/login', [UserController::class, 'login']);
+
+// Login User
+Route::get('/users/login', [UserController::class, 'authenticate']);
