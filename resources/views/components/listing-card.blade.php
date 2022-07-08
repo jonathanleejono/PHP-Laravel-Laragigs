@@ -2,7 +2,9 @@
 
 <x-card>
     <div class="flex">
-        <img class="hidden w-48 mr-6 md:block" src="images/no-image.png" alt="" />
+        <img class="hidden w-48 mr-6 md:block" {{-- the period dot is concatenating --}}
+            src="{{$listing->logo ? asset('storage/' . $listing->logo) : asset('/images/no-image.png')}}"
+            alt="" />
         <div>
             <h3 class="text-2xl">
                 {{-- can be written like this as well --}}
