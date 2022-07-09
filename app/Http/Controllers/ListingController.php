@@ -24,7 +24,7 @@ class ListingController extends Controller
             'listings' => Listing::latest()->filter(request([
                 'tag',
                 'search'
-            ]))->paginate(8)
+            ]))->paginate(6)
         ]);
     }
 
